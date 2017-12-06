@@ -2,7 +2,7 @@ def find_biggest(array)
   biggest = 0
   index = 0
   array.each_with_index do |n,i|
-    if biggest <= n
+    if biggest < n
       biggest = n
       index = i
     end
@@ -10,26 +10,29 @@ def find_biggest(array)
   return index
 end
 
+def array_hash(array)
+  array.map{|k|"#{k}"}.join('')
+end
+
 count = 0
 hash = {}
-start_index = 0
 
 array = $stdin.readline.chomp.split(' ').map(&:to_i)
-p array
 
-while(!hash.key? array) do
-  hash[array.clone] = true
+array_h = array_hash(array)
+while(!hash.key? array_h) do
+  hash[array_h] = true
   index = find_biggest(array)
   value = array[index]
   array[index] = 0
 
-  while(value < 0) do
+  while(value > 0) do
     index += 1
-    array[index % 16] += 1
+    array[index % array.size] += 1
+    value -= 1
   end
 
   count += 1
-  start_index += 1
+  array_h = array_hash(array)
 end
-
 p count
