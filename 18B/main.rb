@@ -1,5 +1,3 @@
-require 'byebug'
-
 def check_reg(x, reg)
   reg[x] = 0 unless reg.key? x
 end
