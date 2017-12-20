@@ -23,5 +23,5 @@ $stdin.each_line do |line|
   i += 1
 end
 
-result = particles.sort_by{ |x| [x.distance(x.a), x.distance(x.v)] }
+result = particles.sort_by{ |x| [x.distance(x.a), -x.distance(x.v)] }
 p result.first.id
